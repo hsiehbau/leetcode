@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>hbsz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+         /**
+        * @param {number[]} nums1
+        * @param {number} m
+        * @param {number[]} nums2
+        * @param {number} n
+        * @return {void} Do not return anything, modify nums1 in-place instead.
+        *用splice方法截取最大空间，然后将nums2合并到1中，然后排序。
+        */
+        var merge = function(nums1, m, nums2, n) {
+            nums1.splice(m)
+            nums2.splice(n)
+            nums1.push(...nums2)
+            nums1.sort((a,b) => a - b)
+        };   
+
+        </script>
+    </body>
+</html>

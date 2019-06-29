@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>remove</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <p>解答关键是查找当前数据跟其前一项是否相等（-1项就是undefined肯定是不等的）用了双指针！！，若相等不采取任何操作，不相等就让这个数重新塞到以nextpos为索引的新数组里（所谓的新就是重新给nums赋值），最后返回的就全是不同的数，而且长度就是nextpos的大小，正好也利用nextpos删掉了多余的</p>
+        <script>
+        var removeDuplicates = function(nums) {
+        var removeDuplicates = function(nums) {
+        var nextPos = 0
+        var len = nums.length 
+        for (let i = 0; i<len; i++){
+       if(nums[i] !== nums[i - 1]) {
+           nums[nextPos++] = nums[i];  
+       } 
+    }
+   return nextPos   
+};
+        </script>
+    </body>
+</html>
