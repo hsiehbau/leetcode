@@ -15,8 +15,21 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-        <script async defer>
+        <script>
+            //找到相同的就占位
+        var searchInsert = function(nums, target) {
+            if (nums[0] >= target) return 0
+            if (nums[nums.length - 1] < target) return nums.length
+            for (let i = 0;i < nums.length - 1;i++){
+                if (nums[i] == target){
+                    return i
+                } else if(nums[i + 1] == target || (nums[i+1] > target && nums[i] < target)){
+                    return i+1
+                }
+            }
+        };  
+        </script>
+        <script >
         var searchInsert = function(nums, target) {
             for(let i = 0;i < nums.length;i++){
                 if (nums[i] >= target){
@@ -25,6 +38,29 @@
             }
             return nums.length;
         };  
+        </script>
+        <script>
+        //双指针
+        var searchInsert = function(nums, target) {
+            let l = 0,r = nums.length - 1,found;
+            if (nums[0] >= target) return 0
+            if (nums[nums.length - 1] < target) return nums.length
+            //判断边界条件为l < r，并且只要有一个找着了就返回位置
+            while (l < r && (nums[l] <= target || nums[r] >= target)){
+                //判断中间值与目标值大小,只用来判断相等的情况
+                if (nums[l] === target || nums[r] === target){
+                    found = nums[l] == target? l : r
+                    break;
+                } else if (nums[l] < target){
+                    //不相等的话就挪到L的后面，与上found
+                    l++
+                } else if (nums[r] > target){
+                    r--
+                }    
+            }
+            //undefined与上L，或者r与上L
+            return found || l
+        };
         </script>
     </body>
 </html>
