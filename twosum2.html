@@ -35,5 +35,23 @@
     };
         
         </script>
+        <script>
+         var twoSum = function(nums, target){
+             //用对象做复杂度2n
+             var map = {}
+             for(var i = 0;i < nums.length;i++){
+                 //定义另一个需要的值
+                 var need = target - nums[i]
+                 if(need in map){
+                     //如果所需差值在map里就返回当前的i(也就是当前数值的下标)，和之前由于没找着对应差值时存入map的另一个值得下标，map[nums[i]]是对象调用属性相对应的属性值的写法。
+                     return [i,map[nums[i]]]
+                 } else {
+                     //如果当前的map里还没存入相应差值，就把当前值先存进，等后面找着了差值就用上了;
+                    map[nums[i]] = i
+                    //给对象属性赋值的写法
+                 }
+             }
+         }
+        </script>
     </body>
 </html>
