@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>add binary</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+<script >
+   /**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+
+ var addBinary = function(a, b) {
+        //初始化
+    var [res, sum, carry] = [[], 0, 0];
+    //缺位补零
+    while(a.length > b.length){
+        b = 0 + b 
+    }
+    while(a.length < b.length){
+        a = 0 + a 
+    }
+    //开始计算
+    for(let i = a.length - 1; i >= 0; i--){
+        sum = parseInt(a[i]) + parseInt(b[i]) + carry
+        //判断carry
+        if(sum >= 2){
+            //有可能是3 或者0
+            res[i] = sum -2
+            carry = 1
+        } else {
+            res[i] = sum
+            carry = 0
+        }
+    }
+    //判断最前一位是否进位
+    if(carry){
+        res.unshift(1)
+    }
+    return res.join("")
+};        
+</script>
+    </body>
+</html>
