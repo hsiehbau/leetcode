@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>去重</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <p>双重循环占内存，效率也最低</p>
+        <script>
+            //ES6常用
+        function unique (arr) {
+            return Array.from(new Set(arr))
+        }
+        </script>
+
+         
+        <script>
+        //比较相邻元素
+        function uniq(array){
+          
+        }
+        </script>
+
+
+        
+        <script>
+        //简单法：不一样的推进空数组，
+        function uniq(array){
+            var temp = []
+            for (let i = 0; i < array.length; i++){
+                if(temp.indexOf(array[i]) == -1){
+                    //值不在新数组就push进去
+                    temp.push(array[i])
+                }
+            }
+            return temp
+        }
+        </script>
+        
+        <script >
+        // 思路：获取没重复的最右一值放入新数组
+        /*
+        * 推荐的方法
+        *
+        * 方法的实现代码相当酷炫，
+        * 实现思路：获取没重复的最右一值放入新数组。
+        * （检测到有重复值时终止当前循环同时进入顶层循环的下一轮判断）*/
+        function uniq(array){
+            var temp = [];
+            var index = [];
+            var l = array.length;
+            for(var i = 0; i < l; i++) {
+                for(var j = i + 1; j < l; j++){
+                    if (array[i] === array[j]){
+                        i++;
+                        j = i;
+                    }
+                }
+                temp.push(array[i]);
+                index.push(i);
+            }
+            console.log(index);
+            return temp;
+        }
+
+        var aa = [1,2,2,3,5,3,6,5];
+        console.log(uniq(aa));
+        </script>
+
+        <script>
+        function distinct(a, b) {
+        let arr = a.concat(b);
+        for (let i=0, len=arr.length; i<len; i++) {
+            for (let j=i+1; j<len; j++) {
+                if (arr[i] == arr[j]) {
+                    arr.splice(j, 1);
+                    // splice 会改变数组长度，所以要将数组长度 len 和下标 j 减一
+                    len--;
+                    j--;
+                }
+            }
+        }
+        return arr
+    }
+        </script>
+
+    </body>
+</html>

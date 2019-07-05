@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>杨辉三角</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script>
+        var generate = function (numRows) {
+        const result = [];
+        if (numRows <= 0) {
+            return result;
+        }
+        let i = 0, j = 0;
+        for (let i = 0; i < numRows; i ++) {
+            const subArr = [];
+            for (let j = 0; j <= i; j++) {
+                if (j > 0 && j < i) {
+                    subArr.push(result[i-1][j-1] + result[i-1][j]);
+                } else {
+                    //边上的都是1，其他的正常加
+                    subArr.push(1);
+                }
+            }
+            result.push(subArr);
+        }
+
+
+        </script>
+        
+        <script >
+        var generate = function(numRows) {
+        if(numRows == 0){
+            return []
+        }
+        let arr = [[1]]
+        for(let i = 1 ; i < numRows;i++){
+            let half = Math.floor(arr[i-1].length/2)+1
+            let temp = [1]
+            for(let l = 1 ;l<half;l++){
+                temp.push(arr[i-1][l-1]+arr[i-1][l])
+            }
+            if(arr[i-1].length%2 === 0){
+                temp = [...temp,  ...temp.reverse()]
+                temp.splice(temp.length/2,1);
+                arr.push(temp)
+            }else{
+                arr.push([...temp,...temp.reverse()])
+            }
+        }
+        return arr
+        }
+        
+        </script>
+    </body>
+</html>
