@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>add string</title>
+        <title>有效的括号</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -16,24 +16,16 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        <script>
-       var addStrings = function(nums1, nums2) {
-    //解构赋值
-    var [carry, i, j, res，sum，remain] = [0, nums1.length - 1, nums2.length - 1, ''];
-    
-    while(i >= 0 || j >= 0){
-        //~~第一次取反字符变数字，再次取反变回原来
-        sum = (~~nums1[i--]) + (~~nums2[j--]) + carry
-        remain = sum % 10
-        //res.push(sum % 10)
-        carry = (sum - remain) / 10
-        res = remain + res
-    }
-    if (carry){
-        return carry + res
-    }
-    return res
-};
+        <script >
+        var isValid = function(s) {
+            let old;
+            while(s.length){
+                old = s;
+                s = s.replace('{}','').replace('[]','').replace('()','')
+                if(old == s) return false
+            }
+            return s == ''
+        };
         </script>
     </body>
 </html>
