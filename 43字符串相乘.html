@@ -35,13 +35,14 @@
                     var multiply = num1[i] * num2[j]
                     var p1 = i + j
                     var p2 = i + j + 1
-                    
+                    //模拟竖式相加
                     pos[p1] += Math.floor(multiply / 10)
                     pos[p2] += multiply % 10
                 }
             }
             
             for(var len = pos.length, k = len - 1; k >= 0; k--){
+                //处理进位
                 if(pos[k] > 9){
                     pos[k - 1] = pos[k - 1] + Math.floor(pos[k] / 10)
                     pos[k] = pos[k] % 10

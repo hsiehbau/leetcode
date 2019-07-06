@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>vvv</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+            //首先创建一个含有26个0的新数组，然后以a的charCodeAt码‘97’为基准，
+            //第一个for循环是看看字符串中都是字母表中的哪个字母，把这个字母相对应的位置上加1，
+            //第一个循环下来数组中相应位置上都是1，第二个循环按第一个循环的套路来，只不过是减去1，
+            //最后判断如果是字母异位数组就该恢复全是0的状态，如果有不一样的，就会存在-1，此时就不是异位词
+        var isAnagram = function(s, t) {
+            if (s.length !== t.length) return false;
+            
+            var letters = new Array(26).fill(0);
+            
+            // save
+            for (i=0; i<s.length; i++) {
+                l = s.charCodeAt(i) - 97;
+                letters[l]++;
+            }
+            
+            // check
+            for (i=0; i<t.length; i++) {
+                l = t.charCodeAt(i) - 97;
+                letters[l]--;
+                if (letters[l] < 0) return false;
+            }
+            
+            return true;
+    };
+        
+        </script>
+    </body>
+</html>
