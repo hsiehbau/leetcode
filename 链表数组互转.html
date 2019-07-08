@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>listarray</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            //接受数组返回链表， 
+            function arrayToList1(ary){
+                var nodes = []
+
+                if (ary.length == 0)  return null 
+
+                for (let i = 0; i < ary.length; i++){
+                    var node = {
+                        //前面是冒号，后面加逗号
+                        value: ary[i],
+                        next: null,
+                    }
+                    nodes.push(node)
+                }
+
+                //最后一个指向是null，不用再重新赋值
+                for(let i = 0; i < nodes.length - 1; i++){
+                    nodes[i].next = nodes[i + 1]
+                }
+
+                //因为要用的就是链表的头结点，所以返回它
+                return nodes[0]
+            }
+
+
+
+            function arrayToList2(ary){
+                var dummy = {
+                    value: undefined,
+                    next: null,
+                }
+                //要的是dummy的next，用的也是头结点之后的value，这些value需要被重新赋值，dummy的value只是拿来打酱油的
+                var prev = dummy 
+
+                for (let i = 0; i < ary.length; i++){
+                    var node = {
+                        //前面是冒号，后面加逗号
+                        value: ary[i],
+                        next: null,
+                    }
+                    //这个node是节点，是指针
+                    prev.next = node
+                    prev = node
+                    //这个node是变量的求值结果
+                }
+                
+                //因为要用的就是链表的头结点，同时它又作为其前面dummy对象的next,所以返回dummy.next
+                return dummy.next
+            }
+
+
+
+            //用递归定义链表
+            function arrayToList3(ary){
+                //用ary.slice(1)，数组创建太多，空间复杂度,n(n-1)···  ~ n^2，会爆掉
+                
+                //首先数组分成两部分，一个头结点，一个剩下的数组组成的小数组
+                // var headValue = ary[0]
+                //从第一项到末尾
+                // var aryTail = ary.slice(1)
+
+                // var headNode = {
+                //     value: headValue,
+                //     next: null,
+                // }
+
+                // return 
+                // var tailList = arrayToList3(aryTail)
+                // headNode.next = tailList
+                // return headNode
+            }
+            //精简版
+            if (ary.length == 0)  return null 
+
+                return {
+                    value: ary[0],
+                    next: arrayToList3(ary.slice(1)),
+                }
+            
+            
+            //不用数组的话，就标记出特定范围的数组转换成链表,不会创建太多空间
+            function arrayToList3(ary, start = 0){
+                if (ary.length == start)  return null 
+                return {
+                    value: ary[0],
+                    next: arrayToList3(ary, start + 1),
+                }
+            }
+
+
+            //链表转数组
+            function listToArray(list){
+                  var result = []
+
+                  while(list != null){
+                      result.push(list.value)
+                      list = list.next
+                  }
+                  return result
+            }
+
+            //递归版本的
+            function listToArray2(list){
+                if(list == null) return []
+                 
+                var tail = list.next
+                return [list.value, ...listToArray2(tail)]
+            }
+            
+            
+
+
+            function insert(list, index, value){
+                //正常位置的insert,
+                if(index < 0) index = 0
+                var head = list
+                if(!list){
+                    return {
+                        value: value,
+                        next: null,
+                    }
+                }
+
+                if(index == 0){
+                    return {
+                        value: value,
+                        next: list,
+                    }
+                }
+
+                var head = list
+                //-1是因为
+                var idx = -1
+                //循环退出时正好结束
+                while(idx !== index - 1 && list.next){
+                    idx++
+                    list = list.next
+                }
+                // while(list){
+                //     idx++
+
+                //     if(idx == index - 1 ) break
+                //     list = list.next
+                // }
+                    //调节指针
+                list.next = {
+                    value: value,
+                    next: list.next,//取值
+                }
+
+                //var temp = list.next;
+                //list.next = node
+                //node.next = temp
+                return head
+            }
+
+            //拿到链表中的第n个元素
+            function nth(list, index){
+                if(!list) return undefined
+
+                if(index == 0) {
+                    return list.value
+                 } 
+                 return nth(list.next, index - 1) 
+            }
+
+            function nthNode(list, index){
+                if(!list && index < 0) return null
+
+                if(index == 0) {
+                    return list
+                 } 
+                 return nthNode(list.next, index - 1) 
+            }
+
+            //在前面加元素
+            function prepend(list, value){
+                return (list, 0 , value)
+            }
+
+            //在末尾追加
+            function append(list, value){
+                return(list, Infinity, value)
+            }
+
+            function size(list){
+                var c = 0
+                while (list !== null){
+                    c++
+                    list = list.next
+                }
+                return c
+            }
+
+            function size2(list){
+                if(!list) {
+                    return 0
+                }
+                return 1 + size2(list.next)
+            }
+        </script>
+    </body>
+</html>

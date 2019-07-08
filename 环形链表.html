@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>d</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="d">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="d" async defer>
+        
+        var hasCycle = function(head) {
+    //快慢指针，快指针每次走两步，慢指针每次走一步
+    let obj1 = head, obj2 = head; //obj1快指针，obj2为慢指针
+
+    while(obj2){
+      obj2 = obj2.next;
+
+    //   if (obj1){
+    //       obj1 = obj1.next;
+    //   }
+
+      if (obj1){
+          obj1 = obj1.next;
+      }
+
+      if (obj2 == obj1 && obj1) return true;
+    }
+    return false;
+};
+
+function ListNode(val){
+    this.val = val;
+    this.next = null;
+}
+
+//测试
+console.log(">>>>>>环形链表》》测试》》")
+let node1 = new ListNode(1);
+let node2 = new ListNode(2);
+let node3 = new ListNode(3);
+let node4 = new ListNode(4);
+
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+node4.next = node2;
+
+let res = hasCycle(node1);
+console.log("res: ", res);
+
+
+
+
+
+var hasCycle = function(head) {
+    //设置两个步长不同的指针，早晚会碰到
+    // if(!head || !head.next) return false
+    var p1 = head, p2 = head;
+    while(p2 !== null && p2.next !== null){
+        //设置不同步长
+        p1 = p1.next;
+        p2 = p2.next.next
+        if(p1 == p2){
+            p1 = head
+            while (p1 != p2){
+                p1 = p1.next
+                p2 = p2.next
+            }
+            return true
+        }
+    }
+    return false
+    
+};
+        </script>
+    </body>
+</html>

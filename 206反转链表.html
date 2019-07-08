@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ggg</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="g">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="g" async defer>
+        var reverseList = function(head) {
+            if(!head || !head.next) return head
+            
+            var new_head = reverseList(head.next)
+            head.next.next = head
+            head.next = null
+            return new_head
+        };
+
+
+ var reverseList = function(head) {
+
+if (head === null || head.next === null) {    // 链表为空或只有一个节点时，不用反转
+
+  return head;
+
+}
+
+var p = head.next;
+
+head.next = null;    // 让原本的head变为尾节点
+
+var temp;    // 临时指针
+
+while (p !== null) {
+//保存原链表的后续数据，暂时指向p.next指向的地址空间,暂存地址
+  temp = p.next;
+//先写这一步的话，存放2的地址就会丢弃
+  p.next = head;
+//新链表的头移动到p,加长一步链表
+  head = p;
+//取回原链表数据
+  p = temp;
+
+}
+return head;
+};
+        </script>
+    </body>
+</html>

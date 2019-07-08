@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>hw</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" >
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <p>递归</p>
+        <script >
+        var isPalindrome = function(head) {
+            if(!head) return null
+            
+            let midNode = findMid(head)
+            midNode.next = reverseList(midNode.next)
+            let n1 = head
+            let n2 = midNode.next
+            while(n1 !== null && n2 !== null && n1.val === v2.val){
+                n1 = n1.next
+                n2 = n2.next
+            }
+            return n2 === null
+        };
+        </script>
+
+        <p>循环</p>
+        <script>
+        //回文链表
+//先判断中间节点
+function findMid(node){
+    if(node === null) return null
+    
+    let midHead = node
+    node = node.next
+    while(!node && !node.next){
+        midHead = midHead.next
+        node = node.next.next
+    }
+    return midHead
+}
+//再反转链表
+var reverseList =  function(head){
+    let prevNode = null
+    while(head !== null){
+        //get next node
+        //保存原链表的后续数据，暂时指向head.next指向的地址空间,暂存地址
+        let nextNode = head.next
+        //把原本指向head的下一个节点的指针换换方向，转而指向prev
+        head.next = prevNode
+        // 原本prev为空，此时让其指向head，建立起一个指针
+        prevNode = head
+        //之前head后的指针被转了方向，现在重新跟后面的建立起连接
+        head = nextNode
+    }
+    return prevNode
+} 
+var isPalindrome = function(head) {
+    if(!head) return null
+    
+    let midNode = findMid(head)
+    midNode.next = reverseList(midNode.next)
+    let n1 = head
+    let n2 = midNode.next
+    while(n1 !== null && n2 !== null && n1.val === n2.val){
+        n1 = n1.next
+        n2 = n2.next
+    }
+    return n2 === null
+};
+        
+        
+        </script>
+    </body>
+</html>

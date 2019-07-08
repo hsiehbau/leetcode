@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>c</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="c">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="c" async defer>
+        //用递归移除节点
+        var removeElements = function(head, val) {
+            if(head === null) return null
+            head.next = removeElements(head.next, val)
+            return head.val === val ? head.next : head
+        };
+
+        //
+        var removeElements = function(head, val) {
+        if (!head) return null;
+        let prev = head; 
+        let curr = head.next;
+        while (curr) {
+            if (curr.val === val) {
+                
+                //越过去，指向下下个next
+            curr = curr.next;
+            //跟新指针重新连接
+            prev.next = curr;
+            } else {
+                //不同的话两个指针整体后移
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+        return head.val === val ? head.next : head; 
+        };
+
+        
+        
+        </script>
+    </body>
+</html>

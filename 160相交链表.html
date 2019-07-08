@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>香蕉</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" >
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script >
+        var getIntersectionNode = function(headA, headB) {
+  let p = headA,
+      q = headB;
+  if (!p || !q) return null;
+  if (p === q) return p;
+
+
+  let countA = 0, countB = 0;
+  while (p !== null) {
+    countA ++
+    p = p.next
+  }
+  while (q !== null) {
+    countB ++
+    q = q.next
+  }
+  
+  //pq值以改变需要重新赋值
+  p = headA;
+  q = headB;
+  if (countA > countB) {
+    for (let i = countB; i < countA; i++) p = p.next;
+  } else if (countA < countB) {
+    for (let i = countA; i < countB; i++) q = q.next;
+  }
+  
+  while (p && q) {
+    if (p === q) return p
+    p = p.next;
+    q = q.next;
+  }
+  
+  return null;
+};
+        </script>
+    </body>
+</html>

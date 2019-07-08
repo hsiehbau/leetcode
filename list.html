@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>fff</title>
+    </head>
+    <body>
+       <script>
+            // function arrayToList(ary, start = 0){
+            //     if (ary.length == start)  return null 
+            //     return {
+            //         value: ary[0],
+            //         next: arrayToList(ary, start + 1),
+            //     }
+            // }
+
+            function arrayToList(ary){
+                var dummy = {
+                    value: undefined,
+                    next: null,
+                }
+                var prev = dummy 
+                for (let i = 0; i < ary.length; i++){
+                    var node = {
+                        value: ary[i],
+                        next: null,
+                    }
+                    prev.next = node
+                    prev = node
+                }
+                return dummy.next
+            }
+            function listToArray(list){
+                if(list == null) return []    
+                var tail = list.next
+                return [list.value, ...listToArray(tail)]
+            }
+
+
+       </script>
+        
+        <script>
+       
+   
+
+
+
+        
+
+
+
+  
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+    </body>
+</html>
