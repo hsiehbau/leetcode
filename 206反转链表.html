@@ -44,16 +44,31 @@ var temp;    // 临时指针
 while (p !== null) {
 //保存原链表的后续数据，暂时指向p.next指向的地址空间,暂存地址
   temp = p.next;
-//先写这一步的话，存放2的地址就会丢弃
+//移动指针指向头结点
   p.next = head;
-//新链表的头移动到p,加长一步链表
+//新链表的头移动到p,
   head = p;
-//取回原链表数据
+//取回原链表数据，重新建立连接
   p = temp;
 
 }
 return head;
 };
+
+
+var reverseList = function(head){
+  var a = null
+  var b = head
+  var c = head
+  while(b){
+    c = c.next
+    b.next = a
+    a = b
+    b = c
+  }
+return a
+}
+
         </script>
     </body>
 </html>
