@@ -1,0 +1,36 @@
+
+<script>
+var middleNode = function(head) {
+
+var tail = mid = head;  //  尾部和中间结点指针
+
+var count = 0;
+
+while (tail.next !== null) {
+
+  tail = tail.next;
+
+  count ++;
+
+  if (count === 2) {
+
+    mid = mid.next;
+
+    count = 0;
+
+  }
+
+}
+
+if (count === 1) {
+
+  mid = mid.next;
+
+}
+
+return mid;
+
+};
+
+</script>
+
