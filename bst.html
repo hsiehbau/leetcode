@@ -228,8 +228,64 @@
                 }
             }
 
+    var isSymmetric = function(root) {
+        
+    };   
+ 
+
+    var isSymmetric = function(root) {
+    if(root===null)
+        return true;
+    var queue=[root.left,root.right];
+    while(queue.length!==0){
+        var res=[],
+            len=queue.length;
+
+        for(var i=0;i<len;i++){
+            var node=queue.shift();
+            if(node===null){
+                res.push(null);
+            }else{
+                queue.push(node.left);
+                queue.push(node.right);
+                res.push(node.val);
+            }
+        }
+
+        var start=0,
+            end=res.length-1;
+        while(start<end){
+            if(res[start]!==res[end]){
+                return false;
+            }
+            start+=1;
+            end-=1;
+        }
+    }
+    return true;
+};
 
 
+var postorderTraversal = function(root) {
+    let stack = [],node = root,res = [];
+    while(node || stack.length){
+        if(node.left || node.right){
+            stack.push(node)
+            if(node.right){
+                stack.push(node.right)
+                node.right = null;
+            }
+            if(node.left){
+                stack.push(node.left)
+                node.left = null
+            }
+        }else{
+            res.push(node.val)
+        }
+        node = stack.pop();
+    }
+    return res;
+};
         </script>
     </body>
 </html>
