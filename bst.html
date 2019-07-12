@@ -94,7 +94,7 @@
                 }
                 curr.left = node
                 nodes.push(node)
-                //右边进去左边出来，保存上一个节点。不管是node还是null，都挂上去
+                //右边进去左边出来，保存上一个节点。不管node是不是null，都挂上去
             } else {
                 //如果取出来不是node,是undefined或者null
                 curr.left = null
@@ -131,6 +131,7 @@
             var res = []
             var nodes = [root]
             while(nodes.length){
+
                 var curr = nodes.shift()
                 if(curr){
                     res.push(curr.val)
@@ -150,21 +151,28 @@
            if(root){
             var res = [root.val]
             var nodes = [root]
+
             while(nodes.length){
+
                 var curr = nodes.shift()
+
                 if(curr.left){
                     res.push(curr.left.val)
                     nodes.push(curr.left)
                 } else {
-                    res.push{null}
+                    res.push(null)
                 }
+
                 if(curr.right){
                     res.push(curr.right.val)
                     nodes.push(curr.right)
                 } else {
-                    res.push{null}
+                    res.push(null)
                 }
+
             }
+
+
             while(res[res.length - 1] === null){
                 //去掉最后的null
                 res.pop()
@@ -178,6 +186,50 @@
 
 
        }
+
+
+       function preOrderTraverse(root){
+           if(root){
+               console.log(root.val)
+               preOrderTraverse(root.left)
+               preOrderTraverse(root.right)
+           }
+       }
+
+       function inOrderTraverse(root){
+           if(root){
+               inOrderTraverse(root.left)
+               console.log(root.val)
+               inOrderTraverse(root.right)
+           }
+       }
+
+       function postOrderTraverse(root){
+           if(root){
+               postOrderTraverse(root.left)
+               postOrderTraverse(root.right)
+               console.log(root.val)
+           }
+       }
+
+        
+       swap
+            function selectSort(ary){
+                var min ,temp;
+                for(let outer = 0;outer <= ary.length - 2; outer++){
+                    min = outer;
+                    for(var inner = outer + 1; inner <= ary.length - 1; inner++){
+                        if(ary[inner] < ary[min]){
+                            min = outer
+                        }
+                        swap(ary,outer,min)
+                    }
+                    return ary
+                }
+            }
+
+
+
         </script>
     </body>
 </html>
