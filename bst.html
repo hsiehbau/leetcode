@@ -172,7 +172,6 @@
 
             }
 
-
             while(res[res.length - 1] === null){
                 //去掉最后的null
                 res.pop()
@@ -211,7 +210,28 @@
                console.log(root.val)
            }
        }
-
+       var levelOrder = function(root) {
+        if(!root){return []}
+        var list = []
+        var stack = []
+        stack.push(root)
+        while(stack.length !== 0){
+            var arr = [],
+                len = stack.length;
+            for(var i = 0;i<len;i++){
+                var item = stack.shift()
+                arr.push(item.val)
+                if(item.left){
+                    stack.push(item.left)
+                }
+                if(item.right){
+                    stack.push(item.right)
+                }
+            }
+            list.push(arr)
+        }
+        return list
+};
         
        swap
             function selectSort(ary){

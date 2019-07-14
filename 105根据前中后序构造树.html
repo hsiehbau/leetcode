@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>f</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <script>
+            var buildTree = function(preOrder, inOrder) {
+                if(preOrder.length == 0 && inOrder.length == 0) return null;
+
+                var root = {}
+                root.val = preOrder[0]
+
+                //根据值找相应根节点的下标
+                var rootIndexInOrder = inOrder.indexOf(root.val)
+
+                //左子树的中序遍历
+                let leftTreeInOrder = inOrder.slice(0, rootIndexInOrder)
+                //左子树的前序遍历
+                let leftTreePreOrder = preOrder.slice(1, leftTreeInOrder.length + 1)
+                //递归的寻找赋值
+                root.left = buildTree(leftTreePreOrder, leftTreeInOrder)
+
+                //右子树的遍历
+                let rigthTreeInOrder = inOrder.slice(rootIndexInOrder + 1)
+                let rightTreePreOrder = preOrder.slice(rootIndexInOrder + 1)
+                root.right = buildTree(rightTreePreOrder, rightTreeInOrder)
+
+                return root
+            };
+
+
+
+    var constructFromPrePost = function(pre, post) {
+        if(pre.length==1){
+            return new TreeNode(pre[0]);
+        }
+        if(pre.length==0){
+            return null;
+        }
+        var val=pre[0],
+            node=new TreeNode(val),
+            index=post.indexOf(pre[1]);
+            //后序遍历中左子树的根节点的位置对着前序遍历中左子树的倒数第二个，所以slice的时候往后挪俩就够了，两个左子树长度相等。
+        node.left=constructFromPrePost(pre.slice(1,index+2),post.slice(0,index+1));
+        node.right=constructFromPrePost(pre.slice(index+2),post.slice(index+1,post.length-1));
+        return node;
+}; 
+
+const constructFromPrePost = (pre, post) => {
+  const { length } = pre;
+  if (length === 0) return null;
+  const root = new TreeNode(pre[0]);
+
+  const index = post.indexOf(pre[1]);
+
+  const lPost = post.slice(0, index + 1);
+  const lPre = pre.slice(1, index + 2);
+  root.left = constructFromPrePost(lPre, lPost);
+
+  const rPost = post.slice(index + 1, length - 1);
+  const rPre = pre.slice(index + 2, length);
+  root.right = constructFromPrePost(rPre, rPost);
+
+  return root;
+};
+
+
+
+
+function getMaxNode(root) {
+    while (root.right) {
+        root = root.right
+    }
+    return root
+}
+
+function getMinNode(root) {
+    while (root.left) {
+        root = root.left
+    }
+    return root
+}
+
+function deleteNode(root, key) {
+    if (root === null) {
+        return null
+    }
+
+    if (key < root.val) {
+        root.left = deleteNode(root.left, key)
+    }
+
+    if (key > root.val) {
+        root.right = deleteNode(root.right, key)
+    }
+
+    if (key === root.val) {
+        if (!root.left) {
+            return root.right
+        } else if (!root.right) {
+            return root.left
+        } else {
+            if (isLeafNode(root.left)) {
+                root.val = root.left.val
+                root.left = null
+                return root
+            }
+            var maxNode = getMaxNode(root.left)
+            root.val = maxNode.val
+            root.left = deleteNode(root.left, maxNode.val)
+            return root
+        }
+    }
+
+    return root
+}
+
+function isLeafNode(node) {
+    return node.left === null && node.right === null
+}
+
+        </script>
+    </body>
+</html>
