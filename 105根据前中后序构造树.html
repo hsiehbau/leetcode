@@ -74,6 +74,43 @@ const constructFromPrePost = (pre, post) => {
 
 
 
+ var buildTree = function(inorder, postorder) {
+  return dfs(inorder.length - 1, 0, inorder.length - 1);
+
+  function dfs(index, startPos, endPos) {
+    if (startPos > endPos)
+      return null;
+//在后序遍历中找到根节点
+    var node = new TreeNode(postorder[index]);
+    //找到根节点的下标和初始位置
+    var pos = inorder.indexOf(postorder[index], startPos);
+//因为后序的最后一个总是根结点，令pos在中序中找到该根结点，则pos把中序分为两部分，左边是左子树，右边是右子树。因为是输出先序（根左右），所以先打印出当前根结点，然后打印左子树，再打印右子树。
+//左子树在后序中的根结点为index – (endPos – pos + 1)，即为当前根结点-右子树的个数。左子树在中序中的起始点start为start，末尾endPos点为pos – 1.右子树的根结点为当前根结点的前一个结点index – 1，右子树的起始点start为pos+1，末尾endPos点为endPos。
+    node.left = dfs(index - (endPos - pos) - 1, startPos, pos - 1);
+    node.right = dfs(index - 1, pos + 1, endPos);
+
+    return node;
+  }
+};
+
+
+var buildTree = function (inorder, postorder) {
+
+function dfs(il, ir, pl, pr) {
+  if (il > ir || pl > pr) return null;
+
+  let root = new TreeNode(postorder[pr])
+
+  let k = inorder.indexOf(postorder[pr])
+
+  root.left = dfs(il, k - 1, pl, pl + k - il - 1)
+  root.right = dfs(k + 1, ir, pl + k - il, pr - 1)
+
+  return root
+}
+
+return dfs(0, inorder.length - 1, 0, postorder.length - 1)
+};
 
 function getMaxNode(root) {
     while (root.right) {
@@ -126,6 +163,39 @@ function deleteNode(root, key) {
 function isLeafNode(node) {
     return node.left === null && node.right === null
 }
+
+
+
+
+var deleteNode = function (root, val) {
+    if (root == null) return null;
+    if (root.val > val) {
+      root.left = deleteNode(root.left, val);
+      return root;
+    }
+    if (root.val < val) {
+      root.right = deleteNode(root.right, val);
+      return root;
+    }
+    if (root.val == val) {
+      if (root.left == null) {
+        return root.right;
+      }
+      if (root.right == null) {
+        return root.left;
+      }
+      let node = findMaxNode(root.left);
+      root.val = node.val;
+      root.left = deleteNode(root.left, node.val);
+      return root;
+    }
+    function findMaxNode(node) {
+      while (node.right) {
+        node = node.right;
+      }
+      return node;
+    }
+  };
 
         </script>
     </body>
