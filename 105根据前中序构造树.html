@@ -38,79 +38,11 @@
 
 
 
-    var constructFromPrePost = function(pre, post) {
-        if(pre.length==1){
-            return new TreeNode(pre[0]);
-        }
-        if(pre.length==0){
-            return null;
-        }
-        var val=pre[0],
-            node=new TreeNode(val),
-            index=post.indexOf(pre[1]);
-            //后序遍历中左子树的根节点的位置对着前序遍历中左子树的倒数第二个，所以slice的时候往后挪俩就够了，两个左子树长度相等。
-        node.left=constructFromPrePost(pre.slice(1,index+2),post.slice(0,index+1));
-        node.right=constructFromPrePost(pre.slice(index+2),post.slice(index+1,post.length-1));
-        return node;
-}; 
-
-const constructFromPrePost = (pre, post) => {
-  const { length } = pre;
-  if (length === 0) return null;
-  const root = new TreeNode(pre[0]);
-
-  const index = post.indexOf(pre[1]);
-
-  const lPost = post.slice(0, index + 1);
-  const lPre = pre.slice(1, index + 2);
-  root.left = constructFromPrePost(lPre, lPost);
-
-  const rPost = post.slice(index + 1, length - 1);
-  const rPre = pre.slice(index + 2, length);
-  root.right = constructFromPrePost(rPre, rPost);
-
-  return root;
-};
+   
 
 
 
- var buildTree = function(inorder, postorder) {
-  return dfs(inorder.length - 1, 0, inorder.length - 1);
 
-  function dfs(index, startPos, endPos) {
-    if (startPos > endPos)
-      return null;
-//在后序遍历中找到根节点
-    var node = new TreeNode(postorder[index]);
-    //找到根节点的下标和初始位置
-    var pos = inorder.indexOf(postorder[index], startPos);
-//因为后序的最后一个总是根结点，令pos在中序中找到该根结点，则pos把中序分为两部分，左边是左子树，右边是右子树。因为是输出先序（根左右），所以先打印出当前根结点，然后打印左子树，再打印右子树。
-//左子树在后序中的根结点为index – (endPos – pos + 1)，即为当前根结点-右子树的个数。左子树在中序中的起始点start为start，末尾endPos点为pos – 1.右子树的根结点为当前根结点的前一个结点index – 1，右子树的起始点start为pos+1，末尾endPos点为endPos。
-    node.left = dfs(index - (endPos - pos) - 1, startPos, pos - 1);
-    node.right = dfs(index - 1, pos + 1, endPos);
-
-    return node;
-  }
-};
-
-
-var buildTree = function (inorder, postorder) {
-
-function dfs(il, ir, pl, pr) {
-  if (il > ir || pl > pr) return null;
-
-  let root = new TreeNode(postorder[pr])
-
-  let k = inorder.indexOf(postorder[pr])
-
-  root.left = dfs(il, k - 1, pl, pl + k - il - 1)
-  root.right = dfs(k + 1, ir, pl + k - il, pr - 1)
-
-  return root
-}
-
-return dfs(0, inorder.length - 1, 0, postorder.length - 1)
-};
 
 function getMaxNode(root) {
     while (root.right) {

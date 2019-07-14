@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>d</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="d">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+            //创建一个新的数组，赋予目标数组的第一个元素，然后循环判断目标数组的第二个元素到最后一个元素，如果不包含在新数组中则push进新数组
+        function a1(arr) {
+            let s = Object.prototype.toString;
+            if(s.call(arr)!== '[object Array]'){
+                throw new typeError('the argument need array');
+            }
+            let nArr = []
+            arr.forEach(function(item,index) {
+                if(nArr.indexOf(item) === -1){
+                    nArr.push(item)
+                }
+            })
+            return nArr;
+            }
+        </script>
+        <script>
+        //:利用set结构实现 需要支持es6
+        function unique(arr) {return [...new Set(arr)]}
+        
+        </script>
+        <script>
+        //quicksort
+        
+        
+        </script>
+        <script>
+        
+        
+        </script>
+        <script>
+        
+        
+        </script>
+        <script>
+        
+        
+        </script>
+    </body>
+</html>
