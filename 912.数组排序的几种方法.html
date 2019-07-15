@@ -15,6 +15,183 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+    <p>swap函数</p>
+    <script>
+    function swap(a,b){
+        var temp = a;
+        a = b;
+        b = temp;
+    }  
+
+    function minusSwap(a,b){
+        a = a + b;
+        b = a - b;
+        a = a - b;
+    }
+
+    function bitSwap(a,b){
+        a = a^b;
+        b = a^b;
+        a = a^b;
+    }
+    </script>  
+    <script>
+        //内置函数
+    var sortArray = function(nums) {
+        return nums.sort((a,b) => a - b)
+    };
+    </script>      
+          
+    <script>
+    //quicksort
+
+    var sortArray = function(nums) {
+    if (nums.length <= 1) {
+        return nums
+    }
+    var mid = Math.floor(nums.length / 2);
+    var midElement = nums.splice(mid, 1)[0];
+    var left = [], right = [];
+    for (var i = 0; i < nums.length; i++ ) {
+        var temp = nums[i];
+        temp < midElement
+            ? (left.push(temp))
+            : (right.push(temp))
+    }
+    return sortArray(left).concat([midElement], sortArray(right))
+}
+
+
+
+    var sortArray = function(nums) {
+    qs(nums, 0, nums.length - 1);
+    return nums;
+};
+
+var qs = function(arr, low, high) {
+    if(low < high) {
+        var base = arr[low], l = low, h = high;
+        while(l != h) {
+            while(l < h && arr[h] >= base) h--;
+            arr[l] = arr[h];
+            while(l < h && arr[l] <= base) l++;
+            arr[h] = arr[l];
+        }
+        arr[l] = base;
+        qs(arr, low, l - 1);
+        qs(arr, l + 1, high);
+    }
+}
+
+
+
+    var sortArray = function(nums) {
+    var data = nums;
+    quickSort(data,0,data.length-1);
+    return data;
+};
+var quickSort = (arr, l, r) => {
+    var temp, i = l, j = r;
+    if (i < j) {
+        temp = arr[i];
+        while (i != j) {
+            while (i < j && arr[j] > temp) {
+                j--;
+            }
+            if (i < j) {
+                arr[i] = arr[j];
+                i++;
+            }
+            while (i < j && arr[i] < temp) {
+                i++;
+            }
+            if (i < j) {
+                arr[j] = arr[i];
+                j--;
+            }
+        }
+        arr[i] = temp;
+        quickSort(arr, l, i - 1);
+        quickSort(arr, i + 1, r);
+    }
+}           
+                
+    </script>
+    <script>
+    //bubbleSort            
+    var sortArray = function(nums) {
+    var len = nums.length
+    for (let i = 0; i < len - 1; i++){
+        for(let j = 1; j < len - i; j++){
+            if(nums[j] > nums[j + 1]) {
+                bitSwap(nums[j], nums[j + 1])
+            }
+        }
+    }
+    return nums
+};           
+    </script>
+    <script>
+     //mergeSort 
+     function mergeSort(arr) {
+         if(arr.length < 2) return arr;
+         var step = 1;
+         var left,right;
+         while(step + right <= arr.length){
+
+         }
+     }         
+                
+    </script>
+    <script>
+    //insertSort,外层循环挨个移动。内循环对外循环选中的元素及其后面的进行对比。外边选中的比较小，数组元素右移腾出位置
+    function  insertSort(arr){
+        var len = arr.length;
+        for(let i = 1; i < len; i++){
+            var temp = arr[i];
+            for(let j = i - 1; j >= 0; j--){
+                if(temp < arr[j]){
+                    arr[j + 1] = arr[j];
+                } else {
+                    arr[j + 1] = temp;
+                    break;
+                }
+            }
+        }
+    }           
+                
+    </script>
+
+    <script>
+        function shellSort(arr){
+            var len = arr.length;
+            gap = Math.floor(len / 2);
+            while(!gap){
+                for(let i = gap; i < len; i++){
+                    var temp = arr[j];
+                    var j;
+                    for(j = i - gap; j >= 0 && temp < arr[j]; j -= gap){
+                        arr[j + gap] = arr[j]
+                    }
+                    arr[j + gap] = temp
+                }
+                //减少增量
+                gap = Math.floor(gap / 2)
+            }
+            return arr
+        }
+    
+    </script>
+
+    <script>
+    //Sort
+    </script>
+    <script>
+    //Sort
+    </script>
+    <script>
+    //Sort
+    </script>
         
         <script>
             //创建一个新的数组，赋予目标数组的第一个元素，然后循环判断目标数组的第二个元素到最后一个元素，如果不包含在新数组中则push进新数组
@@ -37,22 +214,6 @@
         function unique(arr) {return [...new Set(arr)]}
         
         </script>
-        <script>
-        //quicksort
         
-        
-        </script>
-        <script>
-        
-        
-        </script>
-        <script>
-        
-        
-        </script>
-        <script>
-        
-        
-        </script>
     </body>
 </html>
