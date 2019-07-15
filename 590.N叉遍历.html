@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>f</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script >
+
+            var preorder = function(root) {
+            if (!root) {
+                return []
+            }
+            if (!root.children) {
+                return [root.val]
+            }
+
+            let ret = [root.val]
+
+            for (let i = 0; i < root.children.length; i++) {
+                let data = preorder(root.children[i])
+                ret = [...ret, ...data]
+            }
+
+            return ret
+            }
+        var postorder = function(root) {
+            if(!root) return [];
+            
+            if(!root.children) return root.val;
+            
+            let res = []
+            for(let i = 0; i < root.children.length; i++){
+                let data = postorder(root.children[i])
+                res = [...res, ...data]
+            }
+            res.push(root.val);
+            return res
+        };
+        
+        </script>
+    </body>
+</html>

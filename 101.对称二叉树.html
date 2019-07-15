@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>s</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" >
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+        var isSymmetric = function(root) {
+    if(!root) return true
+    var queue = [root.left, root.right];
+    //push进队列，然后双指针判断回文
+    while(queue.length !== 0){
+        var res = [],len = queue.length;
+        
+        for(let i = 0; i< len; i++){
+            var node = queue.shift();
+            if(!node) res.push(null);
+            else {
+                queue.push(node.left)
+                queue.push(node.right)
+                res.push(node.val)
+            }
+        }
+        
+        var start = 0,end = res.length - 1;
+        while(start < end){
+            if(res[start] !== res[end]) return false
+            start++
+            end--
+        }
+        
+    }
+    
+    
+    return true
+};
+
+
+var isSymmetric = function(root) {
+    if(!root) return true
+    
+    var equal = function (left, right){
+        if(!left && !right) return true
+        //只有一边有或者两边有但是值不相等就不行
+        if((left && !right) || (!left && right) || (left.val !==  right.val)){
+            return false
+        }
+        return equal((left.left, right.right) && equal(left.right, right.left))
+    }
+
+    return equal(root.left, root.right)
+};
+
+function isMirror(a, b) {
+    if (a === b) return true
+    if (!a || !b) return false
+    return a.val === b.val && isMirror(a.left, b.right) && isMirror(a.right, b.left)
+}
+var isSymmetric = function(root) {
+    return !root || isMirror(root.left, root.right)
+};
+        </script>
+    </body>
+</html>

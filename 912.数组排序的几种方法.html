@@ -16,6 +16,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <p>swap函数</p>
+    <p>相同的元素换位置叫做不稳定排序</p>
     <script>
     function swap(a,b){
         var temp = a;
@@ -43,20 +44,23 @@
     </script>      
           
     <script>
+        function partation(ary, start = 0, end = ary.length - 1){
+            var 
+        }
     //quicksort
 
     var sortArray = function(nums) {
     if (nums.length <= 1) {
         return nums
     }
+
     var mid = Math.floor(nums.length / 2);
-    var midElement = nums.splice(mid, 1)[0];
+    var midElement = nums.splice(mid, 1)[0]; 
+    
     var left = [], right = [];
     for (var i = 0; i < nums.length; i++ ) {
         var temp = nums[i];
-        temp < midElement
-            ? (left.push(temp))
-            : (right.push(temp))
+        temp < midElement ? (left.push(temp)) : (right.push(temp))
     }
     return sortArray(left).concat([midElement], sortArray(right))
 }
@@ -115,7 +119,7 @@ var quickSort = (arr, l, r) => {
         quickSort(arr, i + 1, r);
     }
 }           
-                
+           //对于完全相同元素的数组来说。 性能会退化到n方，调用栈达到N层    
     </script>
     <script>
     //bubbleSort            
