@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>d</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="g">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="s" async defer>
+        var bstFromPreorder = function(preorder) {
+    const helper = stack => {
+        if (!stack.length) return null
+        const node = new TreeNode(stack.shift())
+        let rightIdx = stack.findIndex(v => v > node.val)
+        rightIdx = rightIdx > -1 ? rightIdx : stack.length
+        node.left = helper(stack.splice(0, rightIdx))
+        node.right = helper(stack)
+        return node
+    }
+    return helper(preorder)
+};
+        
+        
+
+var bstFromPreorder = function(preorder) {
+    if(!preorder || preorder.length < 1){
+        return null;
+    }
+    var head = preorder.shift();
+    var t = new TreeNode(head); //第一个数是VAL
+    if(preorder.length < 1){
+        return t;
+    }
+    var i = 0;
+    while(preorder[i]<head){ 
+        i++;
+    }
+    t.right = bstFromPreorder(preorder.slice(i)); //从第一个大于VAL的数开始后面的是right
+    t.left = bstFromPreorder(preorder.slice(0,i));//剩下是left
+    return t;
+};
+        </script>
+    </body>
+</html>
