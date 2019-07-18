@@ -47,7 +47,7 @@
     return true
 };
 
-//有问题！！
+//有问题！！最后一行的equal多加了一对括号！！！！！！！！！
 var isSymmetric = function(root) {
     if(!root) return true
     
@@ -57,11 +57,14 @@ var isSymmetric = function(root) {
         if((left && !right) || (!left && right) || (left.val !==  right.val)){
             return false
         }
-        return equal((left.left, right.right) && equal(left.right, right.left))
+        // return equal((left.left, right.right) && equal(left.right, right.left))
     }
 
     return equal(root.left, root.right)
 };
+
+
+
 
 function isMirror(a, b) {
     if (a === b) return true
