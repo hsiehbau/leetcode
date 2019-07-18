@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>g</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="v">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script >
+        var levelOrder = function(root) {
+    if(!root) return []
+    //初始化列表与栈，
+    var list = []
+    var stack = []
+    stack.push(root)
+    //循环到栈底
+    while(stack.length !== 0){
+        var arr = [];
+        var len = stack.length;
+        for(var i = 0; i < len; i++){
+            //出栈进arr
+            var item = stack.shift()
+            arr.push(item.val)
+            if(item.left) {
+                stack.push(item.left)
+            }
+            if(item.right) {
+                stack.push(item.right)
+            }
+        }//end for
+        //每次循环都把arr推进list
+        list.push(arr)
+    }
+    return list
+};
+
+
+
+
+var levelOrder = function(root) {
+    let res = [];
+    let d = -1;
+    traverse(root);
+    return res;
+    
+    //const  traverse = function(root){
+     function traverse(root){
+        d++;
+            //if(res[d]){
+        if(root){
+            if(d in res){
+                res[d].push(root.val)
+            } else {
+                res[d] = [root.val];
+            }
+            traverse(root.left);
+            traverse(root.right); 
+        } 
+        d--
+    } 
+};
+        
+        </script>
+    </body>
+</html>
