@@ -70,6 +70,38 @@ var levelOrder = function(root) {
     } 
 };
         
+
+//优化：通过函数参数记录递归深度以及数组
+var levelOrder = function(root) {
+    return  traverse(root);
+
+     function traverse(root, res = [], depth = 0){
+        if(root){
+            if(depth in res){
+                res[depth].push(root.val)
+            } else {
+                res[depth] = [root.val];
+            }
+            traverse(root.left, res, depth + 1);
+            traverse(root.right, res, depth + 1); 
+        } 
+        return res;
+    } 
+};
+
+
+var levelOrder = function(root, res = [], depth = 0) {
+    if(root){
+        if(depth in res){
+            res[depth].push(root.val)
+        } else {
+            res[depth] = [root.val];
+        }
+        levelOrder(root.left, res, depth + 1);
+        levelOrder(root.right, res, depth + 1); 
+        } 
+    return res;
+};
         </script>
     </body>
 </html>

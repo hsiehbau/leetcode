@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>g</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="g">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+
+var averageOfLevels = function(root) {
+    let res = [];
+    traverse(root);
+    return res.map(it => {
+        return it.reduce((avg, item, idx) => {return (avg * idx + item) / (idx + 1)}, 0) //（已求完idx个值的）平均值×索引加下一个数组的值再除以idx + 1；；；；0是平均值的初始值
+    })
+    
+    function traverse(root, depth = 0){
+        if(root){
+            if(depth in res){
+                res[depth].push(root.val);
+            } else {
+                res[depth] = [root.val];
+                //[root.val]，加方括号是因为再二维数组中，[root.val]相当于一个元素
+            }
+            traverse(root.left, depth + 1);
+            traverse(root.right, depth + 1);
+        }
+    }
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+
+var averageOfLevels = function(root) {
+  let res = []
+
+  const traverse = (root, data, level) => {
+    if(!root) {
+      return
+    }
+
+    data[level] = data[level] || []
+
+    data[level].push(root.val)
+
+    traverse(root.left, data, level + 1)
+    traverse(root.right, data, level + 1)
+
+    res[level] = data[level].reduce((r, i) => r + i, 0) / data[level].length
+  }
+
+  traverse(root, [], 0)
+
+  return res
+}
+
+
+
+var averageOfLevels = function(root) {
+    result=[];
+    (f=(p,n)=>{
+        if(p===null)return;
+
+        if(result[n])result[n].push(p.val);
+
+        else result[n]=[p.val];
+
+        f(p.left,n+1);
+        f(p.right,n+1);
+    })(root,0);
+    return result.map(x=>x.reduce((a,b)=>a+b)/x.length);
+};
+        </script>
+    </body>
+</html>
