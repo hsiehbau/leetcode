@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>f</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="f">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+var firstUniqChar = function(s) {
+    for(let i = 0; i < s.length; i++){
+        let item = s[i];
+        if(s.lastIndexOf(item) === s.indexOf(item)){
+            return i
+        }
+    }
+    return -1
+};
+
+
+
+            var firstUniqChar = function(s) {
+    var freq = new Array(26).fill(0);
+    for(let i=0;i<s.length;i++){
+        
+        freq[s.charCodeAt(i) - 97] ++;
+    }
+    
+    for(i=0;i<s.length;i++){
+        if(freq[s.charCodeAt(i)- 97] === 1)
+        {
+           return i
+        }
+    }    
+    return -1;  
+};
+var firstUniqChar = function(s) {
+    if (!s) return -1;
+    
+    const set = new Set();
+    for (let i=0; i<s.length; i++) {
+        const str = s[i];
+        
+        if (set.has(str)) continue;
+        
+        for (let j=i+1; j<s.length; j++) {
+            if (str === s[j]) {
+                set.add(str);
+                break;
+            }
+        }
+        if (!set.has(str)) {
+            return i;
+        }
+    }
+    
+    return -1;
+};
+
+var firstUniqChar = function(s) {
+    let unique = new Map();
+    let notUnique = new Set();
+    
+    for (let i = 0; i < s.length; i++) {
+        let char = s.charAt(i);
+        if (!notUnique.has(char) && !unique.has(char)) {
+            unique.set(char, i);
+        } else {
+            unique.delete(char);
+            notUnique.add(char);
+        }
+    }
+    let ans = unique.entries().next().value;
+    return ans ? ans[1] : -1;
+};
+
+var firstUniqChar = function(s) {
+    if(!s || s.length === 0) return -1;
+    
+    const dict = {};
+    
+    for(const c of s){
+        dict[c] = (dict[c] || 0) + 1;
+    }
+    
+    for(const key in dict){
+        if( dict[key] === 1) return s.indexOf(key);
+    }
+    
+    return -1;
+    
+};
+        
+        </script>
+    </body>
+</html>

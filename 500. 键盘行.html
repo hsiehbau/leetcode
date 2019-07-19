@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>r</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="vc">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+            var findWords = function(words) {
+                let keys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
+                let res = [];
+
+                words.forEach(function(item){
+                    let s = new Set();
+                    //先转换大小写
+                    let word = item.toLowerCase();
+
+                    for(let letter of word){
+                        //循环遍历每个单词所在行数
+                        for(let i = 0; i < 3; i++){
+                            //若在就把所在行数add进集合,如果都在同一行，那i相等，add进set的就只有一个数，就是单词所在行数
+                            if(keys[i].indexOf(letter) !== -1){
+                                s.add(i);
+                                break
+                            }
+                        }
+                    }
+                    //综上，遍历结束时集合中只会存在同行字母的所在行数这一个数
+                    if(s.size === 1) {
+                       res.push(item)
+                    }
+                })
+                return res
+            };
+        
+        </script>
+    </body>
+</html>
