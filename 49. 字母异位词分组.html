@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>r</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="r">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+
+var groupAnagrams = function(strs) {
+    const output = new Map();
+    for (str of strs) {
+        const key = str.split('').reduce((acc,curr)=>acc + curr.charCodeAt() ** 4, 0);
+        let next;
+        if (output.has(key)) {
+            next = output.get(key);
+            next.push(str);
+        } else {
+            next = [str];
+        }
+        output.set(key, next);
+    }
+    return [...output.values()];
+};
+
+
+var groupAnagrams = function(strs) {
+    const hash={};
+    const res=[];
+    for(let i=0;i<strs.length;i++){
+        //循环遍历字符串数组中的每一个字符串split成数组排字典序再join成数组
+        const str=strs[i].split('').sort().join('');
+        //进行映射
+        if(hash[str]==undefined){
+            hash[str]=[strs[i]];
+        }
+        else{
+            hash[str].push(strs[i]);
+        }
+    }
+    for(let i in hash){
+        res.push(hash[i]);
+    }
+    return res;
+};
+            
+        </script>
+    </body>
+</html>
