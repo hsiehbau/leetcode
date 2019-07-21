@@ -1,28 +1,17 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>去重</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <p>双重循环占内存，效率也最低</p>
-        <script>
+
+        
+## 一、利用ES6 Set去重（ES6中最常用）      
+        ```
             //ES6常用
         function unique (arr) {
             return Array.from(new Set(arr))
         }
-        //不考虑兼容性，这种去重的方法代码最少。这种方法还无法去掉“{}”空对象，后面的高阶方法会添加去掉重复“{}”的方法
-
+        ```
++ 不考虑兼容性，这种去重的方法代码最少。这种方法还无法去掉“{}”空对象，后面的高阶方法会添加去掉重复“{}”的方法.
+## 二、利用for嵌套for，然后splice去重（ES5中最常用）
++ 双重循环占内存，效率也最低
++ 
+    ```
         function distinct(a, b) {
         let arr = a.concat(b);
         for (let i=0, len=arr.length; i<len; i++) {
@@ -36,16 +25,32 @@
             }
         }
         return arr
-    }
-        </script>
-
-         
-        <script>
-        //比较相邻元素
-        function uniq(array){
-          
         }
-        </script>
+
+    ```
+## 三、利用indexOf去重
++ 新建一个空的结果数组，for 循环原数组，判断结果数组是否存在当前元素，如果有相同的值则跳过，不相同则push进数组。
++ 
+    ```
+        function unique(arr) {
+            if (!Array.isArray(arr)) {
+                console.log('type error!')
+                return
+            }
+            var array = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (array .indexOf(arr[i]) === -1) {
+                    array .push(arr[i])
+                }
+            }
+            return array;
+        }
+        var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+        console.log(unique(arr))
+        // [1, "true", true, 15, false, undefined, null, NaN, NaN, "NaN", 0, "a", {…}, {…}]  //NaN、{}没有去重
+            ```
+                
+## 四、利用sort()
 
 
         
