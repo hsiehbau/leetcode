@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>884</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+       
+        <script>
+            
+            var uncommonFromSentences = function(A, B) {
+                //连接字符串记得加空格不然连接处会黏连，split参数是分隔符
+                let ary = (A + ' ' +B).split(' ')
+                let res= []
+                let hash = {}
+                //数组中遍历用forof
+                for(let i of ary){
+                    hash[i]? (hash[i]++) : hash[i] = 1; 
+                    
+                }
+                //ary.forEach(i => map[i]? (map[i]++) : (map[i] = 1))
+                //对象中遍历用forin
+                for(let k in hash){
+                    if(hash.hasOwnProperty(k) && hash[k] == 1){
+                        res.push(i)
+                    }
+                }
+                return res
+            }
+            
+        </script>
+    </body>
+</html>
