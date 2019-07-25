@@ -31,7 +31,7 @@
         //用对象
         var distributeCandies = function(candies) {
           let p = new Map()
-          for(let item in candies){
+          for(let item of candies){
               p.set(item, ~~p.get(item) + 1)
           }
           let res = [...p.values()].sort((a,b) => a - b)
