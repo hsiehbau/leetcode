@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>347</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="d">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script >
+        var topKFrequent = function(nums, k) {
+            let hash = new Map()
+            for(let i of nums){
+                hash[i]? (hash[i]++) : (hash[i] = 1) 
+            }
+            //把值传进arr
+            let arr = [...hash.values()].sort((a,b) => b - a)
+
+            return arr.slice(0, k-1)
+        }
+
+        var topKFrequent = function(nums, k) {
+    let hash = new Map()
+    for (let i of nums) {
+        hash[i] ? (hash[i]++) : (hash[i] = 1)
+    }
+    
+    let arr = [...hash.entries()].sort((a,b)=>b[1] - a[1])
+
+    return arr.slice(0, k - 1).map(it => it[0])
+}
+        
+        </script>
+    </body>
+</html>
