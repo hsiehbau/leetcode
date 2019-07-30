@@ -1,6 +1,7 @@
  /**
  * @param {string[]} strs
  * @return {string}
+ * 实质都是双循环，挨个匹配
  */
 var longestCommonPrefix = function(strs) {
    let firstStrs = strs[0]
@@ -17,6 +18,50 @@ var longestCommonPrefix = function(strs) {
    return res
 };
 
+var longestCommonPrefix = function(strs) {
+    let final = ""
+
+    if (!strs.length) {
+        return final
+    }
+
+    for (let i = 0; i < strs[0].length; i++) {
+
+        let reg = new RegExp("^" + strs[0].slice(0, i + 1))
+        let flag = true
+        strs.forEach(str=>{
+            if (!str.match(reg)) {
+                flag = false
+            }
+        }
+        )
+        if (flag) {
+            final = strs[0].slice(0, i + 1)
+        }
+    }
+    return final
+}
+
+
+
+
+var longestCommonPrefix = function(strs){
+    let res = ''
+    if(strs.length == 0) return res
+    for(let i = 0; i < strs[0].length; i++){
+        let reg = new RegExp('^' + strs.slice(0,i + 1))
+        let flag = true
+        strs.forEach(str => {
+            if(!str.match(reg)){
+                flag = false
+            }
+        })
+        if(flag){
+            res = strs[0].slice(0,i + 1)
+        }
+    }
+    return res
+}
 var longestCommonPrefix = function(strs) {
     if(strs.length === 0) return '';
     
