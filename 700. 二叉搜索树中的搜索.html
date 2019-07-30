@@ -18,21 +18,21 @@
         
         <script src="c" async defer>
         var searchBST = function(root, val) {
-  while (root) {
-    if (root.val === val) {
-      return root
-    }
-    if (root.val > val) {
-      root = root.left
-      continue
-    }
-    if (root.val < val) {
-      root = root.right
-    }
-  }
+          while (root) {
+            if (root.val === val) {
+              return root
+            }
+            if (root.val > val) {
+              root = root.left
+              continue
+            }
+            if (root.val < val) {
+              root = root.right
+            }
+          }
 
-  return root
-}
+          return root
+        }
         </script>
     </body>
 </html>

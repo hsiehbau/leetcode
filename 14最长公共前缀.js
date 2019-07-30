@@ -62,6 +62,7 @@ var longestCommonPrefix = function(strs){
     }
     return res
 }
+
 var longestCommonPrefix = function(strs) {
     if(strs.length === 0) return '';
     
