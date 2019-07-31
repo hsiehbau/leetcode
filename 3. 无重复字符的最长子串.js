@@ -66,6 +66,29 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 
-
+//用集合
+var lengthOfLongestSubstring = function(s) {
+    let seen = new Set();
+    let res = 0,
+        tail = 0,
+        curBest = 0;
+    
+    for(let head = 0; head < s.length; head++) {
+        let c = s.charAt(head);
+        if (!seen.has(c)) {
+            curBest += 1;;
+        } else {
+            res = Math.max(res, curBest);
+            while (s.charAt(tail)!==c) {
+                seen.delete(s[tail]);
+                tail += 1;
+            }
+            tail += 1;
+            curBest = head - tail + 1;
+        }
+        seen.add(c);
+    }
+    return Math.max(res, curBest);
+};
 
  
