@@ -25,4 +25,26 @@ var lengthOfLongestSubstring = function(s) {
       return res
  };
 
+ var lengthOfLongestSubstring = function(s) {
+    var length = s.length;
+    if (length <= 1) {
+        return length;
+    }
+    let from = 0;
+    let to = 1;
+    let result = 1;
+    while (to < length) {
+        let sub = s.slice(from, to);
+        let i = sub.indexOf(s[to]);
+        if (i !== -1) {
+            from = from + i + 1;
+        }
+        to++;
+        result = to - from > result ? to - from : result;
+    }
+    return result;
+};
+
+//用hashmap优化
+
  
