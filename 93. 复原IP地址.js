@@ -38,3 +38,22 @@ var restoreIpAddresses = function(s) {
     }
 
 
+
+//四层循环太过冗余，下面用  递归  优化
+var restoreIpAddresses = function(s, parts = [], res = []){
+    
+    if(parts.length == 4 && s.length == 0){
+        res.push(parts.join('.'))
+    }
+
+    for(let i = 1;i <= 3; i++){
+        var part = s.slice(0,i)
+        if(isIPPart(part)){
+            parts.push(part)
+            restoreIpAddresses(s.slice(i),parts, res)
+            parts.pop()
+        }
+    }
+    return res
+}
+
