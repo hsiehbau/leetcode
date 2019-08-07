@@ -10,20 +10,29 @@ function* nature(n){
   }
 }
 
+[...nature(20)]
+
 var nat = nature(n), ans, res = [];
 
-while(!(ans = nat.next().done)){
+while(!(ans = nat.next()).done){
     res.push(ans.value)
 }
 console.log(res)
 
+
+
+
 function* primes(n){
-    yield !/^.?$|^(..+?)\1+$/.test(Array(n + 1).join('1'))
+    var flag = !/^.?$|^(..+?)\1+$/.test(Array(n + 1).join('1'))
+    while(flag && n > 0){
+        yield n
+        n-- 
+    }
 }
   
-  var pri = nature(n), ans, res = [];
+  var pri = primes(n), ans, res = [];
   
-  while(!(ans = pri.next().done)){
+  while(!(ans = pri.next()).done){
       res.push(ans.value)
   }
   console.log(res)
