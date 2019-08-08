@@ -14,7 +14,7 @@ var BSTIterator = function(root) {
 };
 
 BSTIterator.prototype.next = function() {
-    var value = this.generated.value()
+    var value = this.generated.value
     this.generated = this.generator.next()
     return value
 };
@@ -23,8 +23,31 @@ BSTIterator.prototype.hasNext = function() {
     return !this.generated.done
 };
 
-
-
+//----------------------------------------
+var BSTIterator = function(root) {
+    this.stack = []
+ 
+    var p = root
+ 
+    while(true){
+        this.stack.push(p)
+        p = p.left
+    }
+ };
+ 
+ BSTIterator.prototype.next = function() {
+     var node = this.stack.pop()
+     var p = node.right
+     while(p){
+         this.stack.push(p)
+         p = p.left
+     }
+     return node.val
+ };
+ 
+ BSTIterator.prototype.hasNext = function() {
+     return this.stack.length !== 0
+ };
 
 /**
  * 
