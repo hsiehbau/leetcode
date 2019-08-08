@@ -1,3 +1,31 @@
+var BSTIterator = function(root) {
+    //拿到生成器以便调用  
+    this.generator = traverse(root)
+    //需马上调用hasnext，并取出第一个值，
+    this.generated = this.generator.next()
+
+    function * traverse(root){
+        if(root){
+            yield * traverse(root.left)
+            yield (root.val)
+            yield* traverse(root.right)
+        }
+    }
+};
+
+BSTIterator.prototype.next = function() {
+    var value = this.generated.value()
+    this.generated = this.generator.next()
+    return value
+};
+
+BSTIterator.prototype.hasNext = function() {
+    return !this.generated.done
+};
+
+
+
+
 /**
  * 
  * 
@@ -166,3 +194,9 @@ function TreeNode(val) {
     BSTIterator: BSTIterator,
     TreeNode: TreeNode,
   };
+
+
+
+
+
+
