@@ -19,8 +19,20 @@ while(!(ans = nat.next()).done){
 }
 console.log(res)
 
-
-
+function isPrimes(n){
+    return n = !/^.?$|^(..+?)\1+$/.test(Array(n + 1).join('1'))
+}
+function* primes(n){
+    var c = 0
+    for(var i = 2; c < n; i++){
+        if(isPrimes(i)){
+            c++
+            yield i
+        }
+    }
+}
+//测试：[...primes(5)]
+// -->[2, 3, 5, 7, 11]
 
 function* primes(n){
     var flag = !/^.?$|^(..+?)\1+$/.test(Array(n + 1).join('1'))
@@ -36,3 +48,20 @@ function* primes(n){
       res.push(ans.value)
   }
   console.log(res)
+
+
+  //数字的倒序输出，用生成器函数
+
+Number.prototype.digits = function*(){
+    var n = this//this不能放左边所以得用一个变量接住
+    while(n > 0){
+        var digit = n % 10
+        yield digit
+        n = (n - digit) / 10
+    }
+}
+//调用number方法
+  for(var digit of 3291..digits()){
+      console.log(digit)
+  }
+
