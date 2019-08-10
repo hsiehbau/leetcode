@@ -36,3 +36,18 @@ function require(path){
     f(exports, module)
     return module.exports
 }
+
+
+Function.reload = function (typedFuncs) {
+    return function(...args) {
+      //typedFunc is like [Number, String, Boolean, function(){}]
+      for(var typedFunc of typedFuncs) {
+          //[0]多余？？？？？？？？？？？？？？？
+        var f = typedFunc.slice(-1)[0]
+        var types = typedFunc.slice(0, -1)
+        if (matchType(args, types)) {
+          f(...args)
+        }
+      }
+    }
+  }
